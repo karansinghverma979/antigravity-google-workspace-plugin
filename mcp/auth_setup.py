@@ -1,6 +1,17 @@
 import os
 import sys
 import urllib.parse
+
+if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+if sys.stderr and hasattr(sys.stderr, 'reconfigure'):
+    try:
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -128,7 +139,7 @@ def authenticate():
             # Start local server to capture callback
             httpd = HTTPServer(('localhost', PORT), OAuthCallbackHandler)
             print(f"Waiting for authorization on localhost:{PORT}...", flush=True)
-            print("👉 If the browser did not open automatically, copy and paste the AUTH_URL above into your browser.\n", flush=True)
+            print("-> If the browser did not open automatically, copy and paste the AUTH_URL above into your browser.\n", flush=True)
             while not auth_code:
                 httpd.handle_request()
 
