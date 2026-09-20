@@ -19,13 +19,18 @@ from googleapiclient.discovery import build
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
 EXTERNAL_CONFIG_DIR = os.path.expanduser("~/.gemini/config/google_workspace")
+VAULT_DIR = os.path.expanduser("~/.gemini/credentials/google-workspace")
 
 def resolve_token_path():
     # 1. Explicit environment variable override
     env_token = os.environ.get("GOOGLE_WORKSPACE_TOKEN_PATH")
     if env_token and os.path.exists(env_token):
         return env_token
-    # 2. Sovereign external quarantine location (~/.gemini/config/google_workspace/token.json)
+    # 2. Sovereign external credential vault (~/.gemini/credentials/google-workspace/token.json)
+    vault_token = os.path.join(VAULT_DIR, "token.json")
+    if os.path.exists(vault_token):
+        return vault_token
+    # 3. Legacy external quarantine location (~/.gemini/config/google_workspace/token.json)
     external_token = os.path.join(EXTERNAL_CONFIG_DIR, "token.json")
     if os.path.exists(external_token):
         return external_token
