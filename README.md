@@ -1,162 +1,193 @@
 <div align="center">
 
-# 🌐 Antigravity Google Workspace MCP Server
+# 🌐 Antigravity Google Workspace Plugin
 
-### *Unified, High-Speed Model Context Protocol (MCP) Server for the Entire Google Workspace Ecosystem*
+### *Unified Automation Bridge, Token-Optimized Telemetry & Dispatch Firewall for Google Workspace (Gmail · Drive · Docs · Sheets · Calendar · Tasks · Contacts)*
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![MCP Protocol](https://img.shields.io/badge/MCP-1.0.0-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)](https://modelcontextprotocol.io)
-[![Google Cloud](https://img.shields.io/badge/Google_Cloud-APIs-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![Zero Secret Leak](https://img.shields.io/badge/Security-Zero_Secret_Exposure-brightgreen?style=for-the-badge)](vibe-security)
+<br/>
+
+<a href="https://github.com/karansinghverma979/antigravity-google-workspace-plugin">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=4285F4&center=true&vCenter=true&multiline=true&width=800&height=100&lines=7-in-1+Unified+Google+Workspace+Automation;Integrated+Dispatch+Firewall+(Zero+Accidental+Sends);Token-Optimized+Telemetry+(Narrow+Queries+%26+Drafts);Autonomous+Morning+Executive+Briefing+Engine" alt="Typing SVG" />
+</a>
+
+<br/>
+<br/>
+
+<!-- Shields Row 1: Ecosystem & Protocols -->
+<p align="center">
+  <a href="https://github.com/karansinghverma979/antigravity-google-workspace-plugin">
+    <img src="https://img.shields.io/badge/Antigravity-Plugin_Ready-7C4DFF?style=for-the-badge&logo=google&logoColor=white" alt="Antigravity Plugin" />
+  </a>
+  <a href="https://modelcontextprotocol.io">
+    <img src="https://img.shields.io/badge/MCP-Protocol_1.0-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white" alt="MCP Protocol" />
+  </a>
+  <a href="https://cloud.google.com">
+    <img src="https://img.shields.io/badge/Google_Cloud-APIs_v1/v3/v4-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="Google Cloud APIs" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-00C853?style=for-the-badge" alt="MIT License" />
+  </a>
+</p>
+
+<!-- Shields Row 2: Security & Governance -->
+<p align="center">
+  <img src="https://img.shields.io/badge/OpenSSF-Hardened_CI-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white" alt="OpenSSF Hardened" />
+  <img src="https://img.shields.io/badge/Security-Dispatch_Firewall-00E676?style=for-the-badge&logo=shield&logoColor=white" alt="Dispatch Firewall" />
+  <img src="https://img.shields.io/badge/Tokens-Zero_Secret_Exposure-brightgreen?style=for-the-badge&logo=vault&logoColor=white" alt="Zero Secret Exposure" />
+  <img src="https://img.shields.io/badge/Tools-22_Operations-FF3D00?style=for-the-badge&logo=hammer&logoColor=white" alt="22 MCP Tools" />
+</p>
 
 <p align="center">
-  <b>Seamlessly empower AI agents with autonomous read/write access to Calendar, Tasks, Gmail, Drive, Docs, Sheets, and Contacts.</b>
+  <b>Empower your AI assistants with unified, token-efficient, and secure access across the entire Google Workspace ecosystem. Built with native safety guardrails to prevent accidental dispatches or data loss.</b>
 </p>
 
 ---
 
 </div>
 
-## 📑 Table of Contents
-- [✨ Features](#-features)
-- [🏛️ System Architecture](#️-system-architecture)
-- [🛠️ Tool Catalog (22 Operations)](#️-tool-catalog-22-operations)
-- [🚀 Quickstart & Setup](#-quickstart--setup)
-  - [1. Prerequisites](#1-prerequisites)
-  - [2. Google Cloud OAuth Setup](#2-google-cloud-oauth-setup)
-  - [3. Installation & Authentication](#3-installation--authentication)
-- [⚙️ Client Configurations](#️-client-configurations)
-  - [Antigravity CLI](#antigravity-cli)
-  - [Claude Desktop](#claude-desktop)
-  - [Cursor / Windsurf / Other MCP Hosts](#cursor--windsurf--other-mcp-hosts)
-- [🔒 Security & Token Hygiene](#-security--token-hygiene)
-- [📄 License](#-license)
+<br/>
 
----
+## 📖 Why Google Workspace Plugin?
 
-## ✨ Features
+Most Google Workspace integrations force AI agents into one of two traps:
+1. **Tool Overload & Context Bloat**: Splitting every Google service into a separate server wastes memory, burns LLM context with repetitive schemas, and dumps hundreds of emails into prompt memory.
+2. **Unchecked Destructive Authority**: Giving an LLM unconstrained access to send live emails or delete Drive files leads to accidental outbounds and catastrophic data loss.
 
-- ⚡ **All-In-One Unified Server**: A single lightweight Python MCP server providing access to 7 core Google Workspace services without juggling multiple server instances.
-- 📬 **Full Gmail Operations**: List messages, fetch full thread content, generate drafts, send emails, and trash spam.
-- 📅 **Bi-directional Calendar Sync**: List upcoming events, create new schedules with attendee invites, and cancel events.
-- 📝 **Google Tasks Integration**: Manage task lists, create tactical tasks with due dates, and mark completions.
-- 📂 **Google Drive & Docs Intelligence**: Query files, read docs, create new Google Docs, and append content dynamically.
-- 📊 **Spreadsheets Engine**: Read tabular data, append rows, and update spreadsheet cell ranges.
-- 📇 **Google Contacts Management**: Search contact lists and create new address book entries.
-- 🔐 **Zero-Leak Architecture**: Local OAuth token caching with automated token refresh and strict gitignore isolation.
+**Antigravity Google Workspace Plugin solves both**:
+- 🌐 **7-in-1 Unified Hub**: A single, lightweight FastMCP engine connects Calendar, Tasks, Gmail, Drive, Docs, Sheets, and Contacts.
+- 🛡️ **The Dispatch Firewall**: Read and draft operations execute instantly; high-risk actions (sending live emails, trashing Drive files, canceling meetings) require explicit user confirmation.
+- ⚡ **Token-Optimized Telemetry**: Bounded list limits, smart search filtering (`newer_than:2d`, `is:unread`), and specific spreadsheet cell ranges prevent LLM context exhaustion.
+- 🌅 **Morning Executive Briefing**: 1-shot situational routine combining calendar agenda, pending tasks, and unread priority emails into an actionable summary.
 
 ---
 
 ## 🏛️ System Architecture
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                      AI CLIENT / HOST AGENT                      │
-│            (Antigravity CLI / Claude Desktop / Cursor)            │
-└─────────────────────────────────┬────────────────────────────────┘
-                                  │ JSON-RPC (stdio)
-                                  ▼
-┌──────────────────────────────────────────────────────────────────┐
-│             ANTIGRAVITY GOOGLE WORKSPACE MCP SERVER              │
-│                       (server.py / FastMCP)                      │
-├──────────────────────────────────────────────────────────────────┤
-│ 🔐 OAuth Token Engine (Auto-Refresh & Local Token Storage)       │
-├──────────────────────────────────────────────────────────────────┤
-│ 📅 Calendar  │ 📬 Gmail     │ 📂 Drive & Docs │ 📇 Contacts       │
-│ 📝 Tasks     │ 📊 Sheets    │ 🔒 Auth Guard   │ ⚡ Error Filter   │
-└─────────────────────────────────┬────────────────────────────────┘
-                                  │ HTTPS (Google APIs v1/v3/v4)
-                                  ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                 GOOGLE WORKSPACE CLOUD PLATFORM                  │
-│       [ Gmail · Calendar · Tasks · Drive · Docs · Sheets ]       │
-└──────────────────────────────────────────────────────────────────┘
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       GOOGLE ANTIGRAVITY AGENT / MCP HOST                   │
+│                    (Antigravity CLI · Claude Desktop · Cursor)              │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │ JSON-RPC (stdio)
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│              ANTIGRAVITY GOOGLE WORKSPACE PLUGIN (mcp/server.py)            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 🛡️ Strict Dispatch Firewall (Pre-Execution 3-Point Confirmation)           │
+│ 🔐 OAuth 2.0 Dynamic Token Engine (Auto-Refresh & Local Quarantine)        │
+├──────────────────────────────────────┬──────────────────────────────────────┤
+│ 📅 Google Calendar (Agenda/Events)   │ 📬 Gmail (Draft-First & Search)      │
+│ ✅ Google Tasks (Action Items)       │ 📂 Google Drive (Scoped Retrieval)   │
+│ 📝 Google Docs (Document Engine)     │ 📊 Google Sheets (Bounded A1 Ranges) │
+│ 👥 Google Contacts (Address Book)    │ ⚡ Error Filtration & Sanitizer      │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │ HTTPS (Google APIs v1/v3/v4)
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        GOOGLE CLOUD PLATFORM / WORKSPACE                    │
+│        [ Gmail · Drive · Docs · Sheets · Calendar · Tasks · Contacts ]      │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🛠️ Tool Catalog (22 Operations)
+## 🛡️ The Dispatch Firewall: Operational Safety Guardrails
+
+To safeguard your communications and data, operations are partitioned into two strict security tiers:
+
+| Tier | Operations | Execution Policy |
+| :--- | :--- | :--- |
+| **Tier 1: Safe Autonomous** | `gcal_list_events`, `gtasks_list_tasks`, `gmail_list_messages`, `gmail_get_message`, `gmail_create_draft`, `gdrive_search_files`, `gdrive_read_file`, `gdocs_read_doc`, `gsheets_read_range`, `gcontacts_list` | Executes autonomously with zero delay. |
+| **Tier 2: High-Risk Dispatch** | `gmail_send_message`, `gdrive_trash_file`, `gcal_delete_event`, `gtasks_delete_task` | **Mandatory Confirmation**: Presents recipient/target, content preview, and requires user approval (`proceed`, `yes`) before execution. |
+
+> [!TIP]
+> **Draft-First Standard**: When asking the agent to email someone, it defaults to creating a draft via `gmail_create_draft`. You can review the draft in your Gmail inbox before authorizing live delivery.
+
+---
+
+## 🛠️ Tool Catalog (22 Operations Across 7 Services)
 
 | Service | MCP Tool Name | Description |
 | :--- | :--- | :--- |
-| **📅 Calendar** | `gcal_list_events` | Fetch upcoming events with start/end limits |
-| | `gcal_create_event` | Schedule meetings with summary, times, and attendees |
-| | `gcal_delete_event` | Remove or cancel an existing calendar event |
-| **📝 Tasks** | `gtasks_list_tasks` | List active tasks from specified task list |
-| | `gtasks_create_task` | Create new task with title, notes, and due date |
-| | `gtasks_complete_task` | Mark a specific task item as completed |
-| | `gtasks_delete_task` | Delete a task from Google Tasks |
-| **📬 Gmail** | `gmail_list_messages` | Search emails with queries (`from:`, `is:unread`, etc.) |
-| | `gmail_get_message` | Retrieve full headers, subject, and body of an email |
-| | `gmail_create_draft` | Prepare draft email without sending immediately |
-| | `gmail_send_message` | Dispatch emails to recipients with CC/BCC support |
-| | `gmail_trash_message` | Move a message directly to trash |
-| **📂 Drive** | `gdrive_search_files` | Search files by name, MIME type, or full-text query |
-| | `gdrive_read_file` | Read plain text / markdown content of Drive files |
-| | `gdrive_trash_file` | Move files to Google Drive trash |
-| **📝 Docs** | `gdocs_create_doc` | Create a new Google Document with initial title |
-| | `gdocs_read_doc` | Extract structured body text from a Google Doc |
-| | `gdocs_append_text` | Append text paragraphs or markdown content into Doc |
-| **📊 Sheets** | `gsheets_read_range` | Read 2D row/column data from a spreadsheet range |
-| | `gsheets_append_row` | Append one or more rows to an active sheet |
-| | `gsheets_update_range`| Overwrite or update specific matrix cell ranges |
-| **📇 Contacts** | `gcontacts_list` | List names, emails, and phone numbers in Contacts |
-| | `gcontacts_create` | Add new contact entry to Google Contacts |
+| **📅 Calendar** | `gcal_list_events` | Fetch upcoming meetings with `time_min`, `time_max`, and `max_results`. |
+| | `gcal_create_event` | Schedule new calendar events with title, timestamps, attendees, and location. |
+| | `gcal_delete_event` | Cancel/delete an event by `event_id` *(Firewall Protected)*. |
+| **✅ Tasks** | `gtasks_list_tasks` | List pending tasks from Google Tasks (`show_completed=false`). |
+| | `gtasks_create_task` | Create new action items with title, notes, and due date. |
+| | `gtasks_complete_task` | Mark a task completed by `task_id`. |
+| | `gtasks_delete_task` | Delete a task from Google Tasks *(Firewall Protected)*. |
+| **📬 Gmail** | `gmail_list_messages` | Query emails with standard Gmail search syntax (`is:unread`, `newer_than:2d`). |
+| | `gmail_get_message` | Retrieve full message headers, subject, date, and body text. |
+| | `gmail_create_draft` | Stage an unsent draft in Gmail (recommended workflow). |
+| | `gmail_send_message` | Transmit live email to external recipients *(Firewall Protected)*. |
+| | `gmail_trash_message` | Move unwanted email directly to Gmail trash. |
+| **📂 Drive** | `gdrive_search_files` | Find files by name, MIME type, or full-text query. |
+| | `gdrive_read_file` | Read plain text or markdown export of Google Drive files. |
+| | `gdrive_trash_file` | Move files to Google Drive trash *(Firewall Protected)*. |
+| **📝 Docs** | `gdocs_create_doc` | Create an empty Google Document. Returns new document ID. |
+| | `gdocs_read_doc` | Read full document body, paragraphs, and structure. |
+| | `gdocs_append_text` | Append text paragraphs or markdown sections to a doc. |
+| **📊 Sheets** | `gsheets_read_range` | Read values from a spreadsheet using bounded A1 notation (`Sheet1!A1:E20`). |
+| | `gsheets_append_row` | Append row arrays to the end of a spreadsheet. |
+| | `gsheets_update_range` | Overwrite a specified A1 cell range with a 2D matrix of values. |
+| **👥 Contacts** | `gcontacts_list` | Query address book contacts by name or email. |
+| | `gcontacts_create` | Create a new contact with name, email, and phone. |
 
 ---
 
 ## 🚀 Quickstart & Setup
 
-### 1. Prerequisites
-- Python 3.10+ installed
-- A Google Account with Google Cloud Platform access
+### 1. Prerequisites & Google Cloud Setup
 
-### 2. Google Cloud OAuth Setup
-
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
-2. Create a new project (e.g. `Antigravity-Workspace`).
-3. Enable the following **7 APIs** under **APIs & Services > Library**:
+1. Create a Google Cloud Project in the [Google Cloud Console](https://console.cloud.google.com).
+2. Enable the following 7 APIs:
    - Google Calendar API
-   - Tasks API
+   - Google Tasks API
    - Gmail API
    - Google Drive API
    - Google Docs API
    - Google Sheets API
-   - People API (Google Contacts)
-4. Configure the **OAuth Consent Screen**:
-   - User Type: **External** (or Internal for Workspace organizations).
-   - Add your Google account as a **Test User**.
-5. Create OAuth Credentials:
-   - Navigate to **Credentials > Create Credentials > OAuth Client ID**.
-   - Application Type: **Desktop App**.
-   - Name: `Antigravity-Workspace-Client`.
-6. Download the generated client configuration JSON and save it as `credentials.json` in the root of this project:
-   ```bash
-   cp ~/Downloads/client_secret_*.json ./credentials.json
-   ```
+   - People API (Contacts)
+3. Configure the **OAuth Consent Screen** (User Type: External, add your Google account as a Test User).
+4. Create **OAuth 2.0 Client IDs** (Application Type: **Desktop app**).
+5. Download the credentials JSON, rename it to `credentials.json`, and place it in `mcp/` or the plugin root.
 
-### 3. Installation & Authentication
+### 2. Authentication Setup
 
+Run the interactive local authenticator:
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/antigravity-google-workspace.git
-cd antigravity-google-workspace
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Authenticate with Google
-python auth_setup.py
+pip install -r mcp/requirements.txt
+python mcp/auth_setup.py
 ```
-*A local browser window will open at `http://localhost:8088`. Sign in, grant permissions, and `token.json` will be saved locally.*
+A browser tab will open asking you to authorize your Google account. Upon approval, `token.json` is generated locally and cached for automated token refresh.
 
 ---
 
 ## ⚙️ Client Configurations
 
-### Antigravity CLI
-Add to your `mcp_config.json` or Antigravity MCP settings:
+### Pathway A: Google Antigravity Plugin (Recommended)
+
+1. Clone or copy into your local Antigravity plugins directory:
+   ```bash
+   git clone https://github.com/karansinghverma979/antigravity-google-workspace-plugin.git ~/.gemini/config/plugins/google-workspace-plugin
+   ```
+2. Add to your Antigravity `mcp_config.json`:
+   ```json
+   {
+     "mcpServers": {
+       "google-workspace-mcp": {
+         "command": "python",
+         "args": [
+           "C:\\Users\\<YourUsername>\\.gemini\\config\\plugins\\google-workspace-plugin\\mcp\\server.py"
+         ],
+         "disabled": false
+       }
+     }
+   }
+   ```
+3. Antigravity automatically loads `plugin.json`, activates the `google-workspace` skill (`skills/google-workspace/SKILL.md`), and registers the agent (`agents/google_workspace.md`).
+
+### Pathway B: Claude Desktop (`claude_desktop_config.json`)
 
 ```json
 {
@@ -164,23 +195,7 @@ Add to your `mcp_config.json` or Antigravity MCP settings:
     "google-workspace": {
       "command": "python",
       "args": [
-        "C:\\Users\\<USER>\\.gemini\\google-workspace\\server.py"
-      ]
-    }
-  }
-}
-```
-
-### Claude Desktop
-Add to `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
-
-```json
-{
-  "mcpServers": {
-    "google-workspace": {
-      "command": "python",
-      "args": [
-        "/path/to/antigravity-google-workspace/server.py"
+        "/path/to/antigravity-google-workspace-plugin/mcp/server.py"
       ]
     }
   }
@@ -189,24 +204,17 @@ Add to `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/App
 
 ---
 
-## 🔒 Security & Token Hygiene
+## 🔒 Security & Privacy Standard
 
-- **Zero Hardcoded Secrets**: Client secrets and live tokens are strictly isolated in `credentials.json` and `token.json`.
-- **Git Ignored**: `.gitignore` strictly blocks all tokens, secrets, `.env`, and session states from ever entering source control.
-- **Local Token Refresh**: Expired tokens are refreshed automatically on the fly without storing plaintext credentials in memory.
-
----
-
-## 🧠 Official Companion Skill & Autonomous Governance
-
-This MCP server is natively governed and orchestrated by the **[`gsuite`](https://github.com/karansinghverma979/antigravity-custom-skills/blob/main/gsuite/SKILL.md)** skill from the **[`antigravity-custom-skills`](https://github.com/karansinghverma979/antigravity-custom-skills)** suite.
-
-- 📖 **Skill Specification**: [`gsuite/SKILL.md`](https://github.com/karansinghverma979/antigravity-custom-skills/blob/main/gsuite/SKILL.md)
-- 🌐 **Master Skillpack Suite**: [Antigravity Custom Skills](https://github.com/karansinghverma979/antigravity-custom-skills)
+- **Zero Token Commits**: `credentials.json` and `token.json` are strictly quarantined by `.gitignore`. A sanitized `credentials.json.example` is committed for reference.
+- **Dynamic Path Expansion**: Supports `GOOGLE_WORKSPACE_TOKEN_PATH` and `GOOGLE_WORKSPACE_CREDENTIALS_PATH` environment variables, avoiding machine-specific paths.
+- **OpenSSF CI Hardening**: GitHub Actions workflows enforce `permissions: contents: read` and pin dependencies to immutable 40-character commit SHAs.
+- **Vulnerability Disclosure**: Managed through coordinated disclosure in [SECURITY.md](SECURITY.md).
 
 ---
 
-## 📄 License
+<div align="center">
 
-This project is open-source and licensed under the [MIT License](LICENSE).
+<b>Maintained by <a href="https://github.com/karansinghverma979">Karan Singh Verma</a> · Released under the MIT License</b>
 
+</div>

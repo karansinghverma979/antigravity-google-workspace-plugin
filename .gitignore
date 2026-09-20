@@ -1,7 +1,14 @@
 # Secrets & Private OAuth Tokens (NEVER COMMIT)
 credentials.json
 token.json
+**/credentials.json
+**/token.json
+*.token
+*.key
+*.pem
 .env
+.env.*
+*.env
 *.env.local
 
 # Python Bytecode & Environments
@@ -12,8 +19,18 @@ venv/
 .venv/
 env/
 ENV/
+build/
+dist/
+*.egg-info/
+
+# Dynamic Local State & Logs
+.local/
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
 
 # System & OS Files
 .DS_Store
 Thumbs.db
-*.log
+desktop.ini

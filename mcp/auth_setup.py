@@ -18,8 +18,33 @@ SCOPES = [
 ]
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
-CREDENTIALS_PATH = os.path.join(WORKSPACE_DIR, 'credentials.json')
-TOKEN_PATH = os.path.join(WORKSPACE_DIR, 'token.json')
+
+def resolve_credentials_path():
+    env_creds = os.environ.get("GOOGLE_WORKSPACE_CREDENTIALS_PATH")
+    if env_creds and os.path.exists(env_creds):
+        return env_creds
+    local_creds = os.path.join(WORKSPACE_DIR, 'credentials.json')
+    if os.path.exists(local_creds):
+        return local_creds
+    parent_creds = os.path.join(os.path.dirname(WORKSPACE_DIR), 'credentials.json')
+    if os.path.exists(parent_creds):
+        return parent_creds
+    return local_creds
+
+def resolve_token_path():
+    env_token = os.environ.get("GOOGLE_WORKSPACE_TOKEN_PATH")
+    if env_token and os.path.exists(env_token):
+        return env_token
+    local_token = os.path.join(WORKSPACE_DIR, 'token.json')
+    if os.path.exists(local_token):
+        return local_token
+    parent_token = os.path.join(os.path.dirname(WORKSPACE_DIR), 'token.json')
+    if os.path.exists(parent_token):
+        return parent_token
+    return local_token
+
+CREDENTIALS_PATH = resolve_credentials_path()
+TOKEN_PATH = resolve_token_path()
 PORT = 8088
 REDIRECT_URI = f'http://localhost:{PORT}/'
 

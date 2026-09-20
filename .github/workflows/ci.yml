@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# OpenSSF Least Privilege Hardening
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Python Syntax & Plugin Manifest
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Validate Python Syntax
+        shell: pwsh
+        run: |
+          Write-Host "Validating Python compilation..."
+          python -m py_compile mcp/server.py
+          python -m py_compile mcp/auth_setup.py
+          Write-Host "✔ Verified clean Python syntax: mcp/server.py and mcp/auth_setup.py"
+
+      - name: Validate Plugin & Manifest JSON
+        shell: pwsh
+        run: |
+          $jsonFiles = Get-ChildItem -Path . -Filter *.json -Recurse
+          Write-Host "Found $($jsonFiles.Count) JSON files to validate."
+          foreach ($file in $jsonFiles) {
+            try {
+              $null = Get-Content $file.FullName -Raw | ConvertFrom-Json
+              Write-Host "✔ Verified valid JSON: $($file.Name)"
+            } catch {
+              Write-Error "Invalid JSON in $($file.FullName): $($_.Exception.Message)"
+              exit 1
+            }
+          }

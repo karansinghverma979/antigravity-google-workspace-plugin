@@ -18,7 +18,20 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
-TOKEN_PATH = os.path.join(WORKSPACE_DIR, "token.json")
+
+def resolve_token_path():
+    env_token = os.environ.get("GOOGLE_WORKSPACE_TOKEN_PATH")
+    if env_token and os.path.exists(env_token):
+        return env_token
+    local_token = os.path.join(WORKSPACE_DIR, "token.json")
+    if os.path.exists(local_token):
+        return local_token
+    parent_token = os.path.join(os.path.dirname(WORKSPACE_DIR), "token.json")
+    if os.path.exists(parent_token):
+        return parent_token
+    return local_token
+
+TOKEN_PATH = resolve_token_path()
 
 SCOPES = [
     'https://www.googleapis.com/auth/calendar',

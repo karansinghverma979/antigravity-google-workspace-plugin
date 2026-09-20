@@ -1,0 +1,5 @@
+{
+  "name": "google-workspace-plugin",
+  "description": "Unified Google Workspace automation bridge (Gmail, Drive, Docs, Sheets, Calendar, Tasks, Contacts) with dispatch firewall & token-optimized telemetry for Google Antigravity",
+  "version": "1.0.0"
+}
