@@ -4,18 +4,17 @@ import urllib.parse
 
 if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
     try:
-        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
     except Exception:
         pass
 if sys.stderr and hasattr(sys.stderr, 'reconfigure'):
     try:
-        sys.stderr.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8', line_buffering=True)
     except Exception:
         pass
-from http.server import HTTPServer, BaseHTTPRequestHandler
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import Flow
+from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 SCOPES = [
@@ -59,35 +58,7 @@ TOKEN_PATH = resolve_token_path()
 PORT = 8088
 REDIRECT_URI = f'http://localhost:{PORT}/'
 
-auth_code = None
-
-class OAuthCallbackHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        global auth_code
-        query = urllib.parse.urlparse(self.path).query
-        params = urllib.parse.parse_qs(query)
-        if 'code' in params:
-            auth_code = params['code'][0]
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            html = """
-            <html><body style="font-family: Arial; text-align: center; padding-top: 50px;">
-            <h1 style="color: #2e7d32;">Authentication Successful!</h1>
-            <p>You can close this tab and return to Antigravity.</p>
-            </body></html>
-            """
-            self.wfile.write(html.encode('utf-8'))
-        else:
-            self.send_response(400)
-            self.end_headers()
-            self.wfile.write(b"Authentication failed or cancelled.")
-
-    def log_message(self, format, *args):
-        pass
-
 def authenticate():
-    global auth_code
     creds = None
     if os.path.exists(TOKEN_PATH):
         try:
@@ -111,40 +82,25 @@ def authenticate():
                 print(f"ERROR: credentials.json not found at {CREDENTIALS_PATH}", flush=True)
                 return None
 
-            flow = Flow.from_client_secrets_file(
+            flow = InstalledAppFlow.from_client_secrets_file(
                 CREDENTIALS_PATH,
-                scopes=SCOPES,
-                redirect_uri=REDIRECT_URI
+                scopes=SCOPES
             )
 
-            auth_url, _ = flow.authorization_url(
+            prompt_msg = (
+                "\n========================================================\n"
+                "AUTH_URL: {url}\n"
+                "========================================================\n"
+                "Please visit the URL above in your browser to complete authorization.\n"
+            )
+
+            creds = flow.run_local_server(
+                port=PORT,
+                prompt='consent',
                 access_type='offline',
-                include_granted_scopes='true',
-                prompt='consent'
+                authorization_prompt_message=prompt_msg,
+                open_browser=True
             )
-
-            print(f"\n========================================================", flush=True)
-            print(f"AUTH_URL: {auth_url}", flush=True)
-            print(f"========================================================\n", flush=True)
-
-            # Open in default system browser via native Windows/cross-platform API
-            try:
-                import webbrowser
-                opened = webbrowser.open(auth_url)
-                if not opened:
-                    os.system(f'cmd.exe /c start "" "{auth_url}"')
-            except Exception:
-                os.system(f'cmd.exe /c start "" "{auth_url}"')
-
-            # Start local server to capture callback
-            httpd = HTTPServer(('localhost', PORT), OAuthCallbackHandler)
-            print(f"Waiting for authorization on localhost:{PORT}...", flush=True)
-            print("-> If the browser did not open automatically, copy and paste the AUTH_URL above into your browser.\n", flush=True)
-            while not auth_code:
-                httpd.handle_request()
-
-            flow.fetch_token(code=auth_code)
-            creds = flow.credentials
 
         # Save to canonical token path
         with open(TOKEN_PATH, 'w', encoding='utf-8') as token_file:
