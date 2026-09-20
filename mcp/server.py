@@ -52,11 +52,14 @@ def get_credentials():
     creds = Credentials.from_authorized_user_file(TOKEN_PATH, SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-            with open(TOKEN_PATH, 'w', encoding='utf-8') as f:
-                f.write(creds.to_json())
+            try:
+                creds.refresh(Request())
+                with open(TOKEN_PATH, 'w', encoding='utf-8') as f:
+                    f.write(creds.to_json())
+            except Exception as e:
+                raise ValueError(f"Google Workspace OAuth token expired or revoked ({e}). Please re-authenticate by running: python mcp/auth_setup.py")
         else:
-            raise ValueError("Google OAuth credentials are invalid or expired. Re-authentication required.")
+            raise ValueError(f"Google OAuth credentials missing or invalid at {TOKEN_PATH}. Please run: python mcp/auth_setup.py")
     return creds
 
 def get_service(service_name, version):

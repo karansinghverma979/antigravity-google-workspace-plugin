@@ -63,6 +63,10 @@ Most Google Workspace integrations force AI agents into one of two traps:
 
 ## 🏛️ System Architecture
 
+<p align="center">
+  <img src="assets/architecture.svg" alt="Google Workspace Architecture" width="100%" />
+</p>
+
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                       GOOGLE ANTIGRAVITY AGENT / MCP HOST                   │

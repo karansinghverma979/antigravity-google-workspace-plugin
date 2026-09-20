@@ -85,10 +85,17 @@ def authenticate():
             creds = None
 
     if not creds or not creds.valid:
+        refresh_succeeded = False
         if creds and creds.expired and creds.refresh_token:
-            print("Refreshing expired OAuth token...", flush=True)
-            creds.refresh(Request())
-        else:
+            print("Attempting to refresh expired OAuth token...", flush=True)
+            try:
+                creds.refresh(Request())
+                refresh_succeeded = True
+            except Exception as e:
+                print(f"Token refresh failed ({e}). Proceeding to fresh OAuth flow...", flush=True)
+                creds = None
+
+        if not refresh_succeeded:
             if not os.path.exists(CREDENTIALS_PATH):
                 print(f"ERROR: credentials.json not found at {CREDENTIALS_PATH}", flush=True)
                 return None
