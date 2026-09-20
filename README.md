@@ -163,7 +163,26 @@ Run the interactive local authenticator:
 pip install -r mcp/requirements.txt
 python mcp/auth_setup.py
 ```
-A browser tab will open asking you to authorize your Google account. Upon approval, `token.json` is generated locally and cached for automated token refresh.
+A browser window will open automatically asking you to authorize your Google account. Upon approval, `token.json` is generated locally and cached for automated token refresh.
+
+> [!TIP]
+> **If the browser doesn't open automatically**: Copy the `AUTH_URL` printed in your terminal and paste it directly into your browser (Chrome/Edge/Brave).
+
+---
+
+### 🔑 Permanent Tokens: How to Bypass the 7-Day Expiration
+
+By default, Google puts all new Google Cloud projects in **"Testing"** mode. Under Google's security policy, **refresh tokens in "Testing" mode strictly expire after 7 days (168 hours)**, forcing you to re-authenticate every week.
+
+#### How to Make Your Refresh Token Permanent (Never Expires):
+1. Open the [Google Cloud Console - OAuth Consent Screen](https://console.cloud.google.com/apis/credentials/consent).
+2. Under **Publishing status**, click the button: **"PUBLISH APP"** and confirm.
+3. Your app's status will change from **Testing** to **In Production**.
+4. **Do you need Google verification? NO!**
+   - For your own personal Google account, you do not need public verification.
+   - When authenticating, Google will show a screen saying *"Google hasn't verified this app"*.
+   - Click **Advanced ➔ Go to <Project Name> (unsafe)** and click **Continue**.
+5. Once authorized, Google issues a **permanent refresh token that does not expire after 7 days**. You will never have to re-authenticate weekly again!
 
 ---
 

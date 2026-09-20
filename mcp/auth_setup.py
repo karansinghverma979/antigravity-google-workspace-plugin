@@ -116,21 +116,43 @@ def authenticate():
             print(f"AUTH_URL: {auth_url}", flush=True)
             print(f"========================================================\n", flush=True)
 
-            # Open in default Windows browser
-            os.system(f'cmd.exe /c start "" "{auth_url}"')
+            # Open in default system browser via native Windows/cross-platform API
+            try:
+                import webbrowser
+                opened = webbrowser.open(auth_url)
+                if not opened:
+                    os.system(f'cmd.exe /c start "" "{auth_url}"')
+            except Exception:
+                os.system(f'cmd.exe /c start "" "{auth_url}"')
 
             # Start local server to capture callback
             httpd = HTTPServer(('localhost', PORT), OAuthCallbackHandler)
             print(f"Waiting for authorization on localhost:{PORT}...", flush=True)
+            print("👉 If the browser did not open automatically, copy and paste the AUTH_URL above into your browser.\n", flush=True)
             while not auth_code:
                 httpd.handle_request()
 
             flow.fetch_token(code=auth_code)
             creds = flow.credentials
 
+        # Save to canonical token path
         with open(TOKEN_PATH, 'w', encoding='utf-8') as token_file:
             token_file.write(creds.to_json())
         print(f"SUCCESS: token.json saved to {TOKEN_PATH}", flush=True)
+
+        # Sync to parent root and legacy locations so all running processes pick it up
+        sync_paths = [
+            os.path.join(os.path.dirname(WORKSPACE_DIR), "token.json"),
+            os.path.expandvars(r"%USERPROFILE%\.gemini\google-workspace-mcp\token.json")
+        ]
+        for sp in sync_paths:
+            if os.path.exists(os.path.dirname(sp)) and sp != TOKEN_PATH:
+                try:
+                    with open(sp, 'w', encoding='utf-8') as sf:
+                        sf.write(creds.to_json())
+                    print(f"Synced token to: {sp}", flush=True)
+                except Exception:
+                    pass
 
     # Verify services
     print("\n--- Verifying Services ---", flush=True)
