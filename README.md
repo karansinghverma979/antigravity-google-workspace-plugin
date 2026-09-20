@@ -65,6 +65,8 @@ Most Google Workspace integrations force AI agents into one of two traps:
 
 ## 🏛️ System Architecture
 
+> **Deep Developer Documentation**: For complete OAuth lifecycle flows, Dispatch Firewall state machines, token quarantine models, and API schemas, see **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
+
 <p align="center">
   <img src="assets/architecture.svg" alt="Google Workspace Architecture" width="100%" />
 </p>
