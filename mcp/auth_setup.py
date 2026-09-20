@@ -28,6 +28,7 @@ SCOPES = [
 ]
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
+VAULT_CONFIG_DIR = os.path.expanduser("~/.gemini/credentials/google-workspace")
 EXTERNAL_CONFIG_DIR = os.path.expanduser("~/.gemini/config/google_workspace")
 
 def resolve_credentials_path():
@@ -35,11 +36,15 @@ def resolve_credentials_path():
     env_creds = os.environ.get("GOOGLE_WORKSPACE_CREDENTIALS_PATH")
     if env_creds and os.path.exists(env_creds):
         return env_creds
-    # 2. Sovereign external quarantine location (~/.gemini/config/google_workspace/credentials.json)
+    # 2. Centralized Credential Vault (canonical location)
+    vault_creds = os.path.join(VAULT_CONFIG_DIR, 'credentials.json')
+    if os.path.exists(vault_creds):
+        return vault_creds
+    # 3. Legacy external quarantine (~/.gemini/config/google_workspace/)
     external_creds = os.path.join(EXTERNAL_CONFIG_DIR, 'credentials.json')
     if os.path.exists(external_creds):
         return external_creds
-    # 3. Local working tree / legacy mirrors (fallback)
+    # 4. Local working tree / legacy mirrors (fallback)
     local_creds = os.path.join(WORKSPACE_DIR, 'credentials.json')
     if os.path.exists(local_creds):
         return local_creds
@@ -49,18 +54,22 @@ def resolve_credentials_path():
     legacy_mcp_creds = os.path.expanduser("~/.gemini/google-workspace-mcp/credentials.json")
     if os.path.exists(legacy_mcp_creds):
         return legacy_mcp_creds
-    return external_creds
+    return vault_creds
 
 def resolve_token_path():
     # 1. Environment variable override
     env_token = os.environ.get("GOOGLE_WORKSPACE_TOKEN_PATH")
     if env_token and os.path.exists(env_token):
         return env_token
-    # 2. Sovereign external quarantine location (~/.gemini/config/google_workspace/token.json)
+    # 2. Centralized Credential Vault (canonical location)
+    vault_token = os.path.join(VAULT_CONFIG_DIR, 'token.json')
+    if os.path.exists(vault_token):
+        return vault_token
+    # 3. Legacy external quarantine (~/.gemini/config/google_workspace/)
     external_token = os.path.join(EXTERNAL_CONFIG_DIR, 'token.json')
     if os.path.exists(external_token):
         return external_token
-    # 3. Local working tree / legacy mirrors (fallback)
+    # 4. Local working tree / legacy mirrors (fallback)
     local_token = os.path.join(WORKSPACE_DIR, 'token.json')
     if os.path.exists(local_token):
         return local_token
@@ -70,7 +79,7 @@ def resolve_token_path():
     legacy_mcp_token = os.path.expanduser("~/.gemini/google-workspace-mcp/token.json")
     if os.path.exists(legacy_mcp_token):
         return legacy_mcp_token
-    return external_token
+    return vault_token
 
 CREDENTIALS_PATH = resolve_credentials_path()
 TOKEN_PATH = resolve_token_path()
@@ -99,7 +108,7 @@ def authenticate():
         if not refresh_succeeded:
             if not os.path.exists(CREDENTIALS_PATH):
                 print(f"ERROR: credentials.json not found at {CREDENTIALS_PATH}", flush=True)
-                print(f"Please place credentials.json in external quarantine:\n  {os.path.join(EXTERNAL_CONFIG_DIR, 'credentials.json')}\n(or set GOOGLE_WORKSPACE_CREDENTIALS_PATH).", flush=True)
+                print(f"Please place credentials.json in credential vault:\n  {os.path.join(VAULT_CONFIG_DIR, 'credentials.json')}\n(or set GOOGLE_WORKSPACE_CREDENTIALS_PATH).", flush=True)
                 return None
 
             flow = InstalledAppFlow.from_client_secrets_file(

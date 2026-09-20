@@ -158,10 +158,10 @@ To safeguard your communications and data, operations are partitioned into two s
    - People API (Contacts)
 3. Configure the **OAuth Consent Screen** (User Type: External, add your Google account as a Test User).
 4. Create **OAuth 2.0 Client IDs** (Application Type: **Desktop app**).
-5. Download the credentials JSON, rename it to `credentials.json`, and place it in the external quarantine directory:
-   - **Linux / macOS**: `~/.gemini/config/google_workspace/credentials.json`
-   - **Windows**: `%USERPROFILE%\.gemini\config\google_workspace\credentials.json`
-   *(Alternatively, set the `GOOGLE_WORKSPACE_CREDENTIALS_PATH` environment variable or place it in `mcp/`)*.
+5. Download the credentials JSON, rename it to `credentials.json`, and place it in the centralized credential vault:
+   - **Linux / macOS**: `~/.gemini/credentials/google-workspace/credentials.json`
+   - **Windows**: `%USERPROFILE%\.gemini\credentials\google-workspace\credentials.json`
+   *(Alternatively, set `GOOGLE_WORKSPACE_CREDENTIALS_PATH`; legacy path `~/.gemini/config/google_workspace/` is supported as fallback)*.
 
 ### 2. Authentication Setup
 
@@ -236,7 +236,7 @@ By default, Google puts all new Google Cloud projects in **"Testing"** mode. Und
 
 ## 🔒 Security & Privacy Standard
 
-- **Sovereign External Quarantine**: Credentials (`credentials.json`) and active OAuth tokens (`token.json`) reside strictly outside the repository tree in `~/.gemini/config/google_workspace/`, mirroring the architecture in `telegram-nexus`. The git repository tree contains zero sensitive artifacts and survives complete repo wipes (`git clean -fdx`).
+- **Sovereign External Quarantine**: Credentials (`credentials.json`) and active OAuth tokens (`token.json`) reside strictly outside the repository tree in the centralized vault at `~/.gemini/credentials/google-workspace/` (with legacy fallback to `~/.gemini/config/google_workspace/`). The git repository tree contains zero sensitive artifacts and survives complete repo wipes (`git clean -fdx`).
 - **Dynamic Path Expansion**: Dynamically expands paths using `os.path.expanduser` with full support for `GOOGLE_WORKSPACE_TOKEN_PATH` and `GOOGLE_WORKSPACE_CREDENTIALS_PATH` environment variables, avoiding machine-specific paths.
 - **Git Defense-in-Depth**: `.gitignore` strictly blocks all `token.json`, `credentials.json`, `*.token`, `*.pem`, `*.key`, and `.env` files. A sanitized `credentials.json.example` is committed for reference.
 - **OpenSSF CI Hardening**: GitHub Actions workflows enforce `permissions: contents: read` and pin dependencies to immutable 40-character commit SHAs.

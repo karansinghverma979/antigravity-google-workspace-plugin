@@ -99,18 +99,20 @@ Cloud APIs can easily return thousands of items, exhausting the LLM's context wi
 
 To ensure zero risk of credential leaks, immunity against accidental git operations, and persistence across repository wipes (`git clean -fdx`), all OAuth credentials and active tokens reside in a dedicated external quarantine directory completely outside the git working tree, mirroring the architecture established in `telegram-nexus`:
 
-- **External Quarantine Directory**: `~/.gemini/config/google_workspace/`
+- **Centralized Credential Vault**: `~/.gemini/credentials/google-workspace/`
 - **Credentials Resolution Order**:
   1. `GOOGLE_WORKSPACE_CREDENTIALS_PATH` (environment variable override)
-  2. `~/.gemini/config/google_workspace/credentials.json` (sovereign external quarantine)
-  3. `mcp/credentials.json` (local working tree fallback)
-  4. `credentials.json` (plugin root fallback)
-  5. `~/.gemini/google-workspace-mcp/credentials.json` (legacy external mirror)
+  2. `~/.gemini/credentials/google-workspace/credentials.json` (canonical vault)
+  3. `~/.gemini/config/google_workspace/credentials.json` (legacy external quarantine fallback)
+  4. `mcp/credentials.json` (local working tree fallback)
+  5. `credentials.json` (plugin root fallback)
+  6. `~/.gemini/google-workspace-mcp/credentials.json` (legacy external mirror)
 - **Token Resolution Order**:
   1. `GOOGLE_WORKSPACE_TOKEN_PATH` (environment variable override)
-  2. `~/.gemini/config/google_workspace/token.json` (sovereign external quarantine)
-  3. `mcp/token.json` (local working tree fallback)
-  4. `token.json` (plugin root fallback)
-  5. `~/.gemini/google-workspace-mcp/token.json` (legacy external mirror)
-- **Zero In-Repo Persistence**: Newly authenticated or refreshed tokens are written exclusively to `~/.gemini/config/google_workspace/token.json`. No secrets or tokens are ever written into the repository working tree.
+  2. `~/.gemini/credentials/google-workspace/token.json` (canonical vault)
+  3. `~/.gemini/config/google_workspace/token.json` (legacy external quarantine fallback)
+  4. `mcp/token.json` (local working tree fallback)
+  5. `token.json` (plugin root fallback)
+  6. `~/.gemini/google-workspace-mcp/token.json` (legacy external mirror)
+- **Zero In-Repo Persistence**: Newly authenticated or refreshed tokens are written exclusively to `~/.gemini/credentials/google-workspace/token.json`. No secrets or tokens are ever written into the repository working tree.
 - **Git Defense-in-Depth**: `.gitignore` strictly blocks all `token.json`, `credentials.json`, `*.token`, `*.pem`, `*.key`, and `.env` files.
