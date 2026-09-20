@@ -18,18 +18,28 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
+EXTERNAL_CONFIG_DIR = os.path.expanduser("~/.gemini/config/google_workspace")
 
 def resolve_token_path():
+    # 1. Explicit environment variable override
     env_token = os.environ.get("GOOGLE_WORKSPACE_TOKEN_PATH")
     if env_token and os.path.exists(env_token):
         return env_token
+    # 2. Sovereign external quarantine location (~/.gemini/config/google_workspace/token.json)
+    external_token = os.path.join(EXTERNAL_CONFIG_DIR, "token.json")
+    if os.path.exists(external_token):
+        return external_token
+    # 3. Local working tree / legacy mirrors (fallback)
     local_token = os.path.join(WORKSPACE_DIR, "token.json")
     if os.path.exists(local_token):
         return local_token
     parent_token = os.path.join(os.path.dirname(WORKSPACE_DIR), "token.json")
     if os.path.exists(parent_token):
         return parent_token
-    return local_token
+    legacy_mcp_token = os.path.expanduser("~/.gemini/google-workspace-mcp/token.json")
+    if os.path.exists(legacy_mcp_token):
+        return legacy_mcp_token
+    return external_token
 
 TOKEN_PATH = resolve_token_path()
 
@@ -46,20 +56,22 @@ SCOPES = [
 _SERVICES = {}
 
 def get_credentials():
-    if not os.path.exists(TOKEN_PATH):
-        raise FileNotFoundError(f"Google Workspace OAuth token not found at {TOKEN_PATH}. Please run auth_setup.py first.")
+    token_path = resolve_token_path()
+    if not os.path.exists(token_path):
+        raise FileNotFoundError(f"Google Workspace OAuth token not found at {token_path}. Please run auth_setup.py first.")
     
-    creds = Credentials.from_authorized_user_file(TOKEN_PATH, SCOPES)
+    creds = Credentials.from_authorized_user_file(token_path, SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             try:
                 creds.refresh(Request())
-                with open(TOKEN_PATH, 'w', encoding='utf-8') as f:
+                os.makedirs(os.path.dirname(token_path), exist_ok=True)
+                with open(token_path, 'w', encoding='utf-8') as f:
                     f.write(creds.to_json())
             except Exception as e:
                 raise ValueError(f"Google Workspace OAuth token expired or revoked ({e}). Please re-authenticate by running: python mcp/auth_setup.py")
         else:
-            raise ValueError(f"Google OAuth credentials missing or invalid at {TOKEN_PATH}. Please run: python mcp/auth_setup.py")
+            raise ValueError(f"Google OAuth credentials missing or invalid at {token_path}. Please run: python mcp/auth_setup.py")
     return creds
 
 def get_service(service_name, version):

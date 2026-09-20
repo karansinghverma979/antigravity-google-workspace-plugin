@@ -95,14 +95,22 @@ Cloud APIs can easily return thousands of items, exhausting the LLM's context wi
 
 ---
 
-## 5. Cross-Platform Resolution & Quarantine Standard
+## 5. Sovereign External Quarantine Architecture
 
+To ensure zero risk of credential leaks, immunity against accidental git operations, and persistence across repository wipes (`git clean -fdx`), all OAuth credentials and active tokens reside in a dedicated external quarantine directory completely outside the git working tree, mirroring the architecture established in `telegram-nexus`:
+
+- **External Quarantine Directory**: `~/.gemini/config/google_workspace/`
 - **Credentials Resolution Order**:
-  1. `GOOGLE_WORKSPACE_CREDENTIALS_PATH` (environment variable)
-  2. `mcp/credentials.json` (plugin subdirectory)
-  3. `credentials.json` (plugin root)
+  1. `GOOGLE_WORKSPACE_CREDENTIALS_PATH` (environment variable override)
+  2. `~/.gemini/config/google_workspace/credentials.json` (sovereign external quarantine)
+  3. `mcp/credentials.json` (local working tree fallback)
+  4. `credentials.json` (plugin root fallback)
+  5. `~/.gemini/google-workspace-mcp/credentials.json` (legacy external mirror)
 - **Token Resolution Order**:
-  1. `GOOGLE_WORKSPACE_TOKEN_PATH` (environment variable)
-  2. `mcp/token.json` (plugin subdirectory)
-  3. `token.json` (plugin root)
-- **Security Quarantine**: `.gitignore` strictly blocks all `token.json`, `credentials.json`, `*.token`, `*.pem`, `*.key`, and `.env` files across all subdirectories.
+  1. `GOOGLE_WORKSPACE_TOKEN_PATH` (environment variable override)
+  2. `~/.gemini/config/google_workspace/token.json` (sovereign external quarantine)
+  3. `mcp/token.json` (local working tree fallback)
+  4. `token.json` (plugin root fallback)
+  5. `~/.gemini/google-workspace-mcp/token.json` (legacy external mirror)
+- **Zero In-Repo Persistence**: Newly authenticated or refreshed tokens are written exclusively to `~/.gemini/config/google_workspace/token.json`. No secrets or tokens are ever written into the repository working tree.
+- **Git Defense-in-Depth**: `.gitignore` strictly blocks all `token.json`, `credentials.json`, `*.token`, `*.pem`, `*.key`, and `.env` files.

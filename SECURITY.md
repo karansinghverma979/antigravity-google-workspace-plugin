@@ -9,8 +9,9 @@ Only the latest release receives active security patches.
 | < 1.0.0 | :x:                |
 
 ## Security Directives & Token Safety
-- **OAuth Token Quarantine**: OAuth 2.0 credentials (`credentials.json`) and active tokens (`token.json`) are strictly git-ignored and must never be committed to source control.
-- **Dynamic Path Expansion**: Token paths resolve dynamically via `GOOGLE_WORKSPACE_TOKEN_PATH` or local quarantine directories without hardcoded user profile paths.
+- **Sovereign External Quarantine**: OAuth 2.0 credentials (`credentials.json`) and active tokens (`token.json`) are stored completely outside the repository tree in `~/.gemini/config/google_workspace/`, mirroring the privacy architecture of `telegram-nexus`.
+- **Zero-Secret Repository Working Tree**: The git repository contains zero token or credential artifacts. Tokens and keys are preserved even if the repository is wiped or recloned.
+- **Dynamic Path Expansion**: Credentials and token paths resolve dynamically via `GOOGLE_WORKSPACE_TOKEN_PATH` and `GOOGLE_WORKSPACE_CREDENTIALS_PATH` or standard user profile expansion (`os.path.expanduser`).
 - **Dispatch Firewall**: Outbound communications (`gmail_send_message`) and destructive actions (`gdrive_trash_file`, `gcal_delete_event`, `gtasks_delete_task`) require explicit confirmation protocols in companion agent skills.
 - **Least-Privilege Scopes**: The plugin requests only necessary Google Workspace API scopes.
 
