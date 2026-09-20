@@ -1,5 +1,23 @@
 {
   "name": "google-workspace-plugin",
   "description": "Unified Google Workspace automation bridge (Gmail, Drive, Docs, Sheets, Calendar, Tasks, Contacts) with dispatch firewall & token-optimized telemetry for Google Antigravity",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "author": "Karan Singh Verma",
+  "license": "MIT",
+  "homepage": "https://github.com/karansinghverma979/antigravity-google-workspace-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karansinghverma979/antigravity-google-workspace-plugin.git"
+  },
+  "keywords": [
+    "antigravity",
+    "plugin",
+    "mcp",
+    "google-workspace",
+    "gmail",
+    "google-drive",
+    "google-calendar",
+    "google-tasks",
+    "dispatch-firewall"
+  ]
 }
