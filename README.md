@@ -9,7 +9,7 @@
 <br/>
 
 <a href="https://github.com/karansinghverma979/antigravity-google-workspace-plugin">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=4285F4&center=true&vCenter=true&multiline=true&width=800&height=100&lines=7-in-1+Unified+Google+Workspace+Automation;Integrated+Dispatch+Firewall+(Zero+Accidental+Sends);Token-Optimized+Telemetry+(Narrow+Queries+%26+Drafts);Autonomous+Morning+Executive+Briefing+Engine" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=4285F4&center=true&vCenter=true&multiline=true&width=800&height=150&lines=7-in-1+Unified+Google+Workspace+Automation;Integrated+Dispatch+Firewall+(Zero+Accidental+Sends);Token-Optimized+Telemetry+(Narrow+Queries+%26+Drafts);Autonomous+Morning+Executive+Briefing+Engine" alt="Typing SVG" />
 </a>
 
 <br/>
