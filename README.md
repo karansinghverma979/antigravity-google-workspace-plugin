@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/logo.svg" alt="Antigravity Workspace Logo" width="128" height="128" />
+
 # 🌐 Antigravity Google Workspace Plugin
 
 ### *Unified Automation Bridge, Token-Optimized Telemetry & Dispatch Firewall for Google Workspace (Gmail · Drive · Docs · Sheets · Calendar · Tasks · Contacts)*

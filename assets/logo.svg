@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="70%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="orb-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="orb-red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F87171"/>
+      <stop offset="100%" stop-color="#DC2626"/>
+    </linearGradient>
+    <linearGradient id="orb-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="orb-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#16A34A"/>
+    </linearGradient>
+    <linearGradient id="core-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#4C1D95"/>
+    </linearGradient>
+    <linearGradient id="shield-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="128" fill="url(#bg-glow)"/>
+  <rect width="504" height="504" x="4" y="4" rx="124" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="8,6"/>
+
+  <!-- Orbital Rings (Defying Gravity) -->
+  <g transform="translate(256, 256)">
+    <!-- Ring 1: Outer Angled Gyroscope Ring -->
+    <ellipse cx="0" cy="0" rx="180" ry="65" fill="none" stroke="#475569" stroke-width="2" transform="rotate(-30)" opacity="0.6"/>
+    <ellipse cx="0" cy="0" rx="180" ry="65" fill="none" stroke="url(#shield-stroke)" stroke-width="3" stroke-dasharray="80 140" transform="rotate(-30)" filter="url(#neon-glow)"/>
+
+    <!-- Ring 2: Secondary Gyroscope Ring -->
+    <ellipse cx="0" cy="0" rx="170" ry="60" fill="none" stroke="#475569" stroke-width="2" transform="rotate(45)" opacity="0.6"/>
+    <ellipse cx="0" cy="0" rx="170" ry="60" fill="none" stroke="url(#core-purple)" stroke-width="3" stroke-dasharray="60 120" transform="rotate(45)"/>
+
+    <!-- Orbiting Service Nodes (Google 4 Colors) -->
+    <!-- Blue Node: Calendar / Docs -->
+    <circle cx="-150" cy="-60" r="14" fill="url(#orb-blue)" filter="url(#neon-glow)"/>
+    <circle cx="-150" cy="-60" r="8" fill="#EFF6FF"/>
+    
+    <!-- Red Node: Gmail -->
+    <circle cx="150" cy="65" r="14" fill="url(#orb-red)" filter="url(#neon-glow)"/>
+    <circle cx="150" cy="65" r="8" fill="#FEF2F2"/>
+
+    <!-- Yellow Node: Drive / Keep -->
+    <circle cx="90" cy="-130" r="12" fill="url(#orb-yellow)" filter="url(#neon-glow)"/>
+    <circle cx="90" cy="-130" r="6" fill="#FFFBEB"/>
+
+    <!-- Green Node: Sheets -->
+    <circle cx="-110" cy="120" r="12" fill="url(#orb-green)" filter="url(#neon-glow)"/>
+    <circle cx="-110" cy="120" r="6" fill="#F0FDF4"/>
+
+    <!-- Central Levitating Antigravity Core (Apex Prism) -->
+    <!-- Outer Glow Polygon -->
+    <polygon points="0,-105 85,45 -85,45" fill="url(#core-purple)" opacity="0.3" filter="url(#neon-glow)"/>
+    
+    <!-- Facet 1: Left Elevation -->
+    <polygon points="0,-95 -75,40 0,65" fill="#6D28D9"/>
+    <!-- Facet 2: Right Elevation -->
+    <polygon points="0,-95 75,40 0,65" fill="#8B5CF6"/>
+    <!-- Facet 3: Front Core Diamond -->
+    <polygon points="0,-95 45,10 0,65 -45,10" fill="url(#core-purple)"/>
+
+    <!-- Central Glowing Antigravity Horizon Line -->
+    <ellipse cx="0" cy="15" rx="55" ry="12" fill="#38BDF8" opacity="0.8" filter="url(#neon-glow)"/>
+    <ellipse cx="0" cy="15" rx="35" ry="6" fill="#FFFFFF"/>
+
+    <!-- Floating Levitating Particles -->
+    <circle cx="-25" cy="-45" r="2.5" fill="#E0E7FF" opacity="0.9"/>
+    <circle cx="30" cy="-20" r="3" fill="#BAE6FD" opacity="0.9"/>
+    <circle cx="0" cy="-60" r="2" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="-35" cy="10" r="2" fill="#C7D2FE" opacity="0.7"/>
+    <circle cx="28" cy="35" r="2" fill="#7DD3FC" opacity="0.7"/>
+
+    <!-- Bottom Energy Anchor Glow -->
+    <ellipse cx="0" cy="140" rx="80" ry="15" fill="#1E1B4B" opacity="0.8"/>
+    <ellipse cx="0" cy="140" rx="50" ry="8" fill="#38BDF8" opacity="0.4" filter="url(#neon-glow)"/>
+  </g>
+
+  <!-- Typography Badge at Base -->
+  <text x="256" y="455" text-anchor="middle" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" letter-spacing="4">ANTIGRAVITY</text>
+  <text x="256" y="478" text-anchor="middle" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="3">WORKSPACE</text>
+</svg>
