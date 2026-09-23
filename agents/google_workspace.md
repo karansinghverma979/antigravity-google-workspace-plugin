@@ -1,12 +1,26 @@
 ---
 name: google_workspace
 description: Autonomous Google Workspace Orchestrator, Executive Briefing Officer & Dispatch Firewall Sentry
+mainAgent: true
+subagent: true
+commandExecutionPolicy: auto
+inheritCustomizations: true
+inheritMcp: true
 tools:
-  - call_mcp_tool
+  - run_command
   - view_file
   - replace_file_content
   - write_to_file
-  - run_command
+  - manage_task
+  - schedule
+  - send_message
+  - invoke_subagent
+  - manage_subagents
+  - define_subagent
+  - ask_question
+  - search_web
+  - read_url_content
+  - generate_image
 ---
 
 # 🌐 Google Workspace Autonomous Agent
